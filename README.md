@@ -2,7 +2,7 @@
 
 
 Maya Treves (mtrev008)  
-Siraaj Kudtarkar (skudt001)  
+<a href="https://github.com/siraajkudtarkar">Siraaj Kudtarkar (skudt001)</a>    
 Kianoosh Nooshi (knoos001)  
 Rania Saber (rsab004)  
 Nathan Caridad (ncari002)  
