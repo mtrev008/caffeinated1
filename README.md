@@ -4,7 +4,7 @@
 Maya Treves (mtrev008)  
 Siraaj Kudtarkar (skudt001)  
 Kianoosh Nooshi (knoos001)  
-<a>href= "https://github.com/rsabe004">Rania Saber (rsab004)</a>
+<a href= "https://github.com/rsabe004">Rania Saber (rsab004)</a>
 Nathan Caridad (ncari002)  
 
 ## Recommended IDE Setup
