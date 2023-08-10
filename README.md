@@ -5,7 +5,7 @@ Maya Treves (mtrev008)
 Siraaj Kudtarkar (skudt001)  
 Kianoosh Nooshi (knoos001)  
 Rania Saber (rsab004)  
-<a href="https://github.com/naridad">Nathan Caridad (ncari002)</a>  
+[Nathan Caridad (ncari002)](https://github.com/naridad)
 
 ## Recommended IDE Setup
 
