@@ -1,7 +1,7 @@
 # Caffeinated
 
 
-[Maya Treves mtrev008](https://pages.github.com/)   
+Maya Treves (mtrev008) 
 Siraaj Kudtarkar (skudt001)  
 Kianoosh Nooshi (knoos001)  
 Rania Saber (rsab004)  
