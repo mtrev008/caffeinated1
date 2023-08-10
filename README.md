@@ -1,8 +1,7 @@
 # Caffeinated
 
 
-<a href= "https://github.com/mtgym2"> Maya Treves (mtrev008) </a>  
-Siraaj Kudtarkar (skudt001)  
+[Maya Treves mtrev008](https://github.com/mtgym2)  
 Kianoosh Nooshi (knoos001)  
 Rania Saber (rsab004)  
 Nathan Caridad (ncari002)  
