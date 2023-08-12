@@ -2,9 +2,9 @@
 
 
 Maya Treves (mtrev008)  
-Siraaj Kudtarkar (skudt001)  
-[Kianoosh Nooshi (knoos001)]("https://github.com/kia-nooshi")   
-Rania Saber (rsab004)  
+[Siraaj Kudtarkar](https://github.com/siraajkudtarkar) (skudt001)  
+[Kianoosh Nooshi (knoos001)]("https://github.com/kia-nooshi")    
+[Rania Saber (rsabe004)](https://github.com/rsabe004)     
 Nathan Caridad (ncari002)  
 
 ## Recommended IDE Setup
