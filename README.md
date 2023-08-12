@@ -6,7 +6,7 @@
 [Siraaj Kudtarkar (skudt001)](https://github.com/siraajkudtarkar)  
 [Kianoosh Nooshi (knoos001)](https://github.com/kia-nooshi)    
 [Rania Saber (rsabe004)](https://github.com/rsabe004)     
-Nathan Caridad (ncari002)  
+[Nathan Caridad (ncari002)](https://github.com/naridad)   
 
 ## Recommended IDE Setup
 
