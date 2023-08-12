@@ -1,11 +1,12 @@
 # Caffeinated
 
 
-Maya Treves (mtrev008)  
-Siraaj Kudtarkar (skudt001)  
-Kianoosh Nooshi (knoos001)  
-Rania Saber (rsab004)  
-[Nathan Caridad (ncari002)](https://github.com/naridad)
+
+[Maya Treves (mtrev008)](https://github.com/mtgym2)  
+[Siraaj Kudtarkar (skudt001)](https://github.com/siraajkudtarkar)  
+[Kianoosh Nooshi (knoos001)](https://github.com/kia-nooshi)    
+[Rania Saber (rsabe004)](https://github.com/rsabe004)     
+[Nathan Caridad (ncari002)](https://github.com/naridad)   
 
 ## Recommended IDE Setup
 
