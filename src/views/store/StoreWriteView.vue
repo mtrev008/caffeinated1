@@ -8,16 +8,16 @@
       <br>
       Item Id:<input type="text" v-model="itemId" />
       <br>
-      <button @click="addItemToCart()">Add</button>
+      <button @click="addItemToShop()">Add</button>
       <br>
-      <button @click="removeItemFromCart()">Remove</button>
+      <button @click="removeItemFromShop()">Remove</button>
   
     </div>
   </template>
   
   <script>
   import { mapStores } from 'pinia'
-  import { useCartStore } from '../../stores/cart'
+  import { useShopStore } from '../../stores/shop'
   
   export default {
     data() {
@@ -28,36 +28,36 @@
       };
     },
     computed: {
-      ...mapStores(useCartStore),
+      ...mapStores(useShopStore),
     },
     methods: {
-      async addItemToCart() {
+      async addItemToShop() {
         if (this.itemName != null && this.itemPrice != null && this.itemId != null) {
           try {
-            console.log('Calling addItemToCart');
+            console.log('Calling addItemToShop');
   
-            this.cartStore.addItem({
+            this.shopStore.addItem({
               name: this.itemName,
               price: this.itemPrice,
               id: this.itemId,
             });
   
-            console.log('Completed addItemToCart');
+            console.log('Completed addItemToShop');
           } catch(err) {
             console.error(err);
           }
         }
       },
-      async removeItemFromCart() {
+      async removeItemFromShop() {
         if (this.itemId != null) {
           try {
-            console.log('Calling removeItemFromCart');
+            console.log('Calling removeItemFromShop');
   
-            this.cartStore.deleteItem({
+            this.shopStore.deleteItem({
               id: this.itemId,
             });
   
-            console.log('Completed removeItemFromCart');
+            console.log('Completed removeItemFromShop');
           } catch(err) {
             console.error(err);
           }
