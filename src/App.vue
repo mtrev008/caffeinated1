@@ -1,24 +1,35 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+    <div id="nav" v-if="user">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <button @click="logout">Logout</button>
       </nav>
     </div>
   </header>
 
   <RouterView />
 </template>
+
+<script setup>
+import { RouterLink, RouterView } from 'vue-router';
+import { useAuthStore } from '@/stores/index.js';
+
+const authStore = useAuthStore();
+
+const user = ref(authStore.state.user);
+
+onBeforeMount(() => {
+  authStore.fetchUser();
+});
+
+const logout = () => {
+  authStore.logout();
+};
+</script>
 
 <style scoped>
 header {
@@ -83,3 +94,48 @@ nav a:first-of-type {
   }
 }
 </style>
+
+
+
+<!-- <script >
+import { RouterLink, RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
+import { onBeforeMount } from 'vue'
+import { useStore} from 'vuex'
+
+export default {
+  setup() {
+    const store  = useStore()
+
+    onBeforeMount (() => {
+      store.dispatch('fetchUser')
+    
+    })
+
+  //   return{
+  //     user: store.state.user
+  //   }
+
+  }
+}
+</script>
+
+<template>
+  <header>
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+
+    
+    <div id = "nav" v-if = "$store.state.user">
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+        <button @click ="$store.dispatch('logout')" > Lougout</button>
+      </nav>
+    </div>
+  </header>
+
+  <RouterView />
+</template>
+
+
+ -->
