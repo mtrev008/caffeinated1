@@ -22,6 +22,11 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/addashop',
+      name: 'addashop',
+      component: () => import('../views/AddAShopView.vue')
+    },
+    {
       path: '/db',
       name: 'database',
       component: DbView
