@@ -1,8 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
@@ -19,6 +14,36 @@ import HelloWorld from './components/HelloWorld.vue'
 
   <RouterView />
 </template>
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
+
+
+</script>
+<script>
+import { useRouter, useRoute } from 'vue-router';
+import { onBeforeMount } from 'vue';
+export default {
+  setup() {
+    const router = useRouter();
+    const route = useRoute();
+
+    onBeforeMount(() => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          router.replace('/login');
+        } else if (route.path == "/login" || route.path == "/register") {
+          router.replace('/');
+        }
+      });
+    });
+  }
+}
+
+</script>
+
+
+
 
 <style scoped>
 header {
