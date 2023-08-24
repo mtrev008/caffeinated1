@@ -1,40 +1,46 @@
 <template>
     <div class="db">
-      <h1>This is the Database Page</h1>
+      <h1>Submit a Review</h1>
   
-      <!-- Section for Employee Creation & Update -->
-      ID (Update):<input type="text" v-model.trim="employeeUpdateId" />
+      <!-- Section for Review Creation & Update -->
+      Email:<input type="text" v-model.trim="email" />
       <br>
-      First Name:<input type="text" v-model.trim="firstName" />
+      City:<input type="text" v-model.trim="city" />
       <br>
-      Last Name:<input type="text" v-model.trim="lastName" />
+      Cafe Name:<input type="text" v-model.trim="cafeName" />
       <br>
-      <button v-if="employeeUpdateId != null && employeeUpdateId.length > 0" @click="updateEmployee()">Update</button>
-      <button v-else @click="createEmployee()">Create</button>
+      Rating:<input type="number" min="1" max="5" v-model.trim="reviewScore" />
+      <br>
+      Review Content:<input type="text" v-model.trim="reviewContent" />
+      <br>
+      <button @click="createReview()">Create</button>
       <br>
   
-      <!-- Section for Employee Query -->
-      First Name Filter:<input type="text" v-model.trim="employeeFilter" />
+      <!-- Section for Review Query -->
+      Filter by City:<input type="text" v-model.trim="cityFilter" />
       <br>
-      <button @click="queryEmployees()">Query</button>
-      <template v-for="employee in employees">
-        <p>{{ employee.firstName || 'Missing First Name' }} {{ employee.lastName || 'Missing Last Name' }} - {{ employee.id }}</p>
+      <button @click="queryReviews()">Query</button>
+      <template v-for="review in reviews">
+        <p>{{ review.city || 'Missing City' }} {{ review.reviewScore || 'Missing Rating' }} 
+          <br>
+          {{ review.reviewContent || 'No Review Included' }}
+        </p>
       </template>
       <br>
   
-      <!-- Section for Employee Read -->
-      ID Lookup:<input type="text" v-model.trim="employeeReadId" />
+      <!-- Section for Review Read -->
+      ID Lookup:<input type="text" v-model.trim="reviewReadId" />
       <br>
-      <button @click="readEmployee()">Read</button>
-      <template v-if="readEmployeesData">
-        <p>{{ readEmployeesData.firstName || 'Missing First Name' }} {{ readEmployeesData.lastName || 'Missing Last Name' }} - {{ readEmployeesData.id }}</p>
+      <button @click="readReview()">Read</button>
+      <template v-if="readReviewsData">
+        <p>{{ readReviewsData.email || 'Missing Email' }} {{ readReviewsData.city || 'Missing City' }} - {{ readReviewsData.id }}</p>
       </template>
       <br>
   
-      <!-- Section for Employee Delete -->
-      ID Delete:<input type="text" v-model.trim="employeeDeleteId" />
+      <!-- Section for Review Delete -->
+      ID Delete:<input type="text" v-model.trim="reviewDeleteId" />
       <br>
-      <button @click="deleteEmployee()">Delete</button>
+      <button @click="deleteReview()">Delete</button>
     </div>
   </template>
   
@@ -56,38 +62,41 @@
     data() {
       return {
         // data for display
-        employees: [],
-        readEmployeesData: null,
+        reviews: [],
+        readReviewsData: null,
   
         // v-model variable for update
-        employeeUpdateId: null,
+        reviewUpdateId: null,
   
         // v-model variables for creation
-        firstName: null,
-        lastName: null,
+        city: null,
+        email: null,
+        reviewScore: null,
+        reviewContent: null,
+        cafeName: null,
   
         // v-model variable for query
-        employeeFilter: null,
+        cityFilter: null,
   
         // v-model variable for read
-        employeeReadId: null,
+        reviewReadId: null,
   
         // v-model variable for delete
-        employeeDeleteId: null,
+        reviewDeleteId: null,
       };
     },
     methods: {
-      async createEmployee() {
+      async createReview() {
         if (
-          this.firstName != null &&
-          this.firstName.length > 0 &&
-          this.lastName != null &&
-          this.lastName.length > 0
+          this.email != null &&
+          this.email.length > 0 &&
+          this.city != null &&
+          this.city.length > 0
         ) {
           try {
-            console.log('Calling createEmployee');
+            console.log('Calling createReview');
   
-            console.log('Creating employee:', { firstName: this.firstName, lastName: this.lastName });
+            console.log('Creating review:', { email: this.email, city: this.city, reviewScore: this.reviewScore, reviewContent: this.reviewContent, cafeName: this.cafeName});
   
             // We use the addDoc function to insert a document into the database. We start with the
             // collection that we want to insert into (in this case eployees) followed by an object
@@ -97,114 +106,79 @@
             // recommend in many cases) then you can create a converter function that returns an
             // object representing how the class should be written to the database
             const docReference = await addDoc(
-              collection(db, 'employees'),
+              collection(db, 'reviews'),
               {
-                firstName: this.firstName,
-                lastName: this.lastName,
+                email: this.email,
+                city: this.city,
+                cafeName: this.cafeName,
+                reviewScore: this.reviewScore,
+                reviewContent: this.reviewContent,
               }
             );
   
             // We could specify the id of the new document were inserting by adding it to the end of
-            // the collection like 'collection(db, 'employees', someId)' but if we omit that then it
+            // the collection like 'collection(db, 'reviews', someId)' but if we omit that then it
             // will have a random id generated automatically
-            console.log('New employee has ID:', docReference.id);
+            console.log('New review has ID:', docReference.id);
   
-            console.log('Completed createEmployee')
+            console.log('Completed createReview')
           } catch(err) {
-            console.error('Error in createEmployee', err);
+            console.error('Error in createReview', err);
           }
         }
       },
-      async updateEmployee() {
-        if (this.employeeUpdateId != null &&
-          this.employeeDeleteId.length > 0 &&
-          this.firstName != null &&
-          this.firstName.length > 0 &&
-          this.lastName != null &&
-          this.lastName.length > 0
-        ) {
-          try {
-            console.log('Calling updateEmployee')
-  
-            console.log('Updating employee:', {
-              id: this.employeeUpdateId,
-              firstName: this.firstName,
-              lastName: this.lastName
-            });
-  
-            // We use the setDoc function to update a document that already exists in the database.
-            // We start with the specific document that we want to insert into (in this an employee
-            // record) followed by an object representing the data we want to over-write. If a record
-            // with that ID already exists, it will be overwritten and if it doesn't it will be
-            // inserted. If you want to only add or overwrite the fields and leave any other existing
-            // fields on the record as is you can use the { merge: true } option
-            await setDoc(
-              doc(db, 'employees', this.employeeUpdateId),
-              {
-                firstName: this.firstName,
-                lastName: this.lastName,
-              },
-              // { merge: true }
-            );
-  
-            console.log('Completed updateEmployee')
-          } catch(err) {
-            console.error('Error in updateEmployee', err);
-          }
-        }
-      },
-      async queryEmployees() {
+      async queryReviews() {
         try {
-          console.log('Calling queryEmployees');
+          console.log('Calling queryReviews');
   
-          // Reset the employees data, typically you would hide data loads
+          // Reset the reviews data, typically you would hide data loads
           // behind a loader which you would turn on when this operation starts
           // and turn off when the data is loaded
-          this.employees = [];
+          this.reviews = [];
   
-          // Create a query against the employees collection
-          let q = query(collection(db, 'employees'));
+          // Create a query against the reviews collection
+          let q = query(collection(db, 'reviews'));
   
-          // If the employeeFilter input has some value (is not falsy) then we
+          // If the cityFilter input has some value (is not falsy) then we
           // apply a where filter to check for matching first names. Note that
           // we actually create a new query using the existing one and the
           // additional filter
-          if (this.employeeFilter) {
-            console.log('Adding filter', this.employeeFilter);
-            q = query(q, where('firstName', '==', this.employeeFilter));
+          if (this.cityFilter) {
+            console.log('Adding filter', this.cityFilter);
+            q = query(q, where('city', '==', this.cityFilter));
           }
   
           // We use getDocs (with an s) to query while we use getDoc (no s) to
           // get a single record
           const queryResponse = await getDocs(q);
   
-          // Iterate over the results to add them to the employees reactive variable
+          // Iterate over the results to add them to the reviews reactive variable
           queryResponse.forEach((responseItem) => {
             console.log({ id: responseItem.id, data: responseItem.data() });
   
-            // Note that here we add objects to the employees reactive variable, and
+            // Note that here we add objects to the reviews reactive variable, and
             // that object includes the id of the record as well as spreading all the
             // fields the record itself contains. This allows us to reference each field
             // in the document directly (as well as the id if needed)
-            this.employees.push({
+            this.reviews.push({
               id: responseItem.id,
               ...responseItem.data(),
             });
           });
   
-          console.log('Completed queryEmployees');
+          console.log('Completed queryReviews');
         } catch(err) {
-          console.error('Error in queryEmployees', err);
+          console.error('Error in queryReviews', err);
         }
       },
-      async readEmployee() {
-        if (this.employeeReadId != null && this.employeeReadId.length > 0) {
+      async readReview() {
+        if (this.reviewReadId != null && this.reviewReadId.length > 0) {
           try {
-            console.log('Calling readEmployee');
+            console.log('Calling readReview');
   
-            // Create a doc reference with the employees collection and the
+            // Create a doc reference with the reviews collection and the
             // id of the record we want to retrieve
-            const docReference = doc(db, 'employees', this.employeeReadId);
+            const docReference = doc(db, 'reviews', this.reviewReadId);
   
             // Call getDoc to retrieve the specific document that we want
             // This represents a specific get rather than a query and is
@@ -218,33 +192,33 @@
             // to use search results. You could even create a class or function
             // that takes in the data and generates this type of object and
             // use that everywhere for consistency
-            this.readEmployeesData = {
+            this.readReviewsData = {
               id: response.id,
               ...response.data(),
             }
-            // We could also have re-used the employees reactive variable and
+            // We could also have re-used the reviews reactive variable and
             // replaced it with this data rather than using a separate variable
             // and elements
   
-            console.log('Completed readEmployees');
+            console.log('Completed readReviews');
           } catch(err) {
-            console.error('Error in readEmployee', err);
+            console.error('Error in readReview', err);
           }
         }
       },
-      async deleteEmployee() {
-        if (this.employeeDeleteId != null && this.employeeDeleteId.length > 0) {
+      async deleteReview() {
+        if (this.reviewDeleteId != null && this.reviewDeleteId.length > 0) {
           try {
-            console.log('Calling deleteEmployee');
+            console.log('Calling deleteReview');
   
-            const docReference = doc(db, 'employees', this.employeeDeleteId);
+            const docReference = doc(db, 'reviews', this.reviewDeleteId);
             // Note that deleting a document that doesn't exist doesn't throw
             // and error and the deleteDoc function returns nothing (they say
             // if you delete something that doens't exist then it was successful
             // which sorta makes sense)
             await deleteDoc(docReference);
             // If we wanted to be reactive we could do any of the following:
-            // 1. Lookup the deleted id in employees array and if it exists
+            // 1. Lookup the deleted id in reviews array and if it exists
             //    then remove it. This is very quick, but you might need to
             //    add it back in the case that the delete actually fails
             // 2. Trigger the query function again after the delete completes
@@ -256,9 +230,9 @@
             // snapshot listener which can be given a callback that will be
             // triggered each time the document is updated
   
-            console.log('Completed deleteEmployee');
+            console.log('Completed deleteReview');
           } catch(err) {
-            console.error('Error in deleteEmployee', err);
+            console.error('Error in deleteReview', err);
           }
         }
       },

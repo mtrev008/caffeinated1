@@ -1,33 +1,34 @@
 
 <template>
   <div class="store/read">
-    <h1>This is the Store Read Page</h1>
+    <h1>This is the Review Read Page</h1>
 
     <!-- flex this table so it looks better -->
-    <table v-if="shopStore.items.length > 0">
+    <table v-if="listStore.reviews.length > 0">
     <tr>
       <th>Name</th>
       <th>Price</th>
       <th>Id</th>
     </tr>
-    <tr v-for="item in shopStore.items">
-      <td>{{ item.name || 'Unknown Name' }}</td>
-      <td>{{ item.price || 'Unknown Price'}}</td>
-      <td>{{ item.id || 'Unknown Id' }}</td>
+    <tr v-for="review in listStore.reviews">
+      <td>{{ review.title || 'Unknown Title' }}</td>
+      <td>{{ review.id || 'Unknown Id' }}</td>
+      <td>{{ review.ReviewId || 'Unknown Review Id' }}</td>
+      <td>{{ review.Review || 'Unknown Review' }}</td>
     </tr>
     </table>
-    <p>Total: {{ shopStore.getTotal }}</p>
+    <p>Total: {{ listStore.getTotal }}</p>
 
   </div>
 </template>
 
 <script>
 import { mapStores } from 'pinia'
-import { useShopStore } from '../../stores/shop'
+import { useListStore } from '../../stores/list'
 
 export default {
   computed: {
-    ...mapStores(useShopStore),
+    ...mapStores(useListStore),
   },
 }
 </script>

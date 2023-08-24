@@ -2,62 +2,62 @@
     <div class="store/write">
       <h1>This is the Store Write Page</h1>
   
-      Item Name:<input type="text" v-model="itemName" />
+      List Review Title:<input type="text" v-model="reviewTitle" />
       <br>
-      Item Price:<input type="text" v-model="itemPrice" />
+      List Id:<input type="text" v-model="reviewId" />
       <br>
-      Item Id:<input type="text" v-model="itemId" />
+      List review:<input type="text" v-model="review" />
       <br>
-      <button @click="addItemToShop()">Add</button>
+      <button @click="addReviewToList()">Add</button>
       <br>
-      <button @click="removeItemFromShop()">Remove</button>
+      <button @click="removeReviewFromList()">Remove</button>
   
     </div>
   </template>
   
   <script>
   import { mapStores } from 'pinia'
-  import { useShopStore } from '../../stores/shop'
+  import { useListStore } from '../../stores/list'
   
   export default {
     data() {
       return {
-        itemName: null,
-        itemPrice: null,
-        itemId: null,
+        reviewName: null,
+        reviewPrice: null,
+        reviewId: null,
       };
     },
     computed: {
-      ...mapStores(useShopStore),
+      ...mapStores(useListStore),
     },
     methods: {
-      async addItemToShop() {
-        if (this.itemName != null && this.itemPrice != null && this.itemId != null) {
+      async addReviewToList() {
+        if (this.reviewName != null && this.reviewPrice != null && this.reviewId != null) {
           try {
-            console.log('Calling addItemToShop');
+            console.log('Calling addReviewToList');
   
-            this.shopStore.addItem({
-              name: this.itemName,
-              price: this.itemPrice,
-              id: this.itemId,
+            this.listStore.addReview({
+              name: this.reviewTitle,
+              reviewId: this.reviewId,
+              review: this.review,
             });
   
-            console.log('Completed addItemToShop');
+            console.log('Completed addReviewToList');
           } catch(err) {
             console.error(err);
           }
         }
       },
-      async removeItemFromShop() {
-        if (this.itemId != null) {
+      async removeReviewFromList() {
+        if (this.reviewId != null) {
           try {
-            console.log('Calling removeItemFromShop');
+            console.log('Calling removeReviewFromList');
   
-            this.shopStore.deleteItem({
-              id: this.itemId,
+            this.listStore.deleteReview({
+              id: this.reviewId,
             });
   
-            console.log('Completed removeItemFromShop');
+            console.log('Completed removeReviewFromList');
           } catch(err) {
             console.error(err);
           }
@@ -72,7 +72,7 @@
     .about {
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-reviews: center;
     }
   }
   </style>
