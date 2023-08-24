@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DbView from '../views/DbView.vue'
-import StoreReadView from '../views/store/StoreReadView.vue'
-import StoreWriteView from '../views/store/StoreWriteView.vue'
 
 
 const router = createRouter({
@@ -25,16 +23,6 @@ const router = createRouter({
       path: '/db',
       name: 'database',
       component: DbView
-    },
-    {
-      path: '/store/read',
-      name: 'store/read',
-      component: StoreReadView
-    },
-    {
-      path: '/store/write',
-      name: 'store/write',
-      component: StoreWriteView
     }
   ]
 })
