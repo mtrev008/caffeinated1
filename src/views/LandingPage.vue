@@ -1,3 +1,4 @@
+<!--TEST-->
 <script>
       var rectangle1 = document.getElementById("rectangle1");
       if (rectangle1) {
