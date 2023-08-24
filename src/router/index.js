@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import DbView from '../views/DbView.vue'
+
 
 
 const router = createRouter({
@@ -25,7 +27,16 @@ const router = createRouter({
       name: 'user',
       component: () => import('../views/UserInfo.vue'),
     },
-
+    {
+      path: '/db',
+      name: 'database',
+      component: DbView
+    },
+    {
+      path: '/landing',
+      name: 'landing',
+      component: () => import('../views/LandingPage.vue')
+    }
   ]
 })
 
