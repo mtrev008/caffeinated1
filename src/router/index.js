@@ -23,6 +23,11 @@ const router = createRouter({
       path: '/db',
       name: 'database',
       component: DbView
+    },
+    {
+      path: '/landing',
+      name: 'landing',
+      component: () => import('../views/LandingPage.vue')
     }
   ]
 })
