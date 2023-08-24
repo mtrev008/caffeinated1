@@ -1,0 +1,156 @@
+.group-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 7px;
+    background-color: var(--color-sienna);
+    width: 141px;
+    height: 45px;
+}
+
+.register {
+    position: absolute;
+    top: 8px;
+    left: 38px;
+    font-weight: 300;
+}
+
+.rectangle-parent {
+    position: absolute;
+    top: 82px;
+    left: 1050px;
+    width: 141px;
+    height: 45px;
+    color: var(--color-oldlace);
+}
+
+.caffeinated-3-1 {
+    position: absolute;
+    top: 267px;
+    left: 688px;
+    width: 801px;
+    height: 601px;
+    object-fit: cover;
+}
+
+.caffeinated,
+.lets-get-caffeinated {
+    position: absolute;
+    display: inline-block;
+}
+
+.caffeinated {
+    top: 464px;
+    left: 282px;
+    font-size: 64px;
+    font-family: var(--font-lalezar);
+    color: #3a3a3a;
+    width: 626px;
+    height: 131px;
+}
+
+.lets-get-caffeinated {
+    top: 553px;
+    left: 394px;
+    font-size: var(--font-size-11xl);
+    font-weight: 300;
+    color: #000;
+    width: 401px;
+    height: 42px;
+}
+
+.find-coffee-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--br-xl);
+    background-color: var(--color-sienna);
+    width: 353.94px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.find-coffee1 {
+    position: absolute;
+    top: 20.76px;
+    left: 75.27px;
+    font-weight: 600;
+    display: inline-block;
+    width: 203.4px;
+    height: 27.48px;
+}
+
+.vector-icon {
+    position: absolute;
+    height: 40%;
+    width: 9.61%;
+    top: 30%;
+    right: 11.57%;
+    bottom: 30%;
+    left: 78.83%;
+    border-radius: var(--br-xl);
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.find-coffee {
+    position: absolute;
+    top: 767px;
+    left: 418px;
+    width: 353.94px;
+    height: 80px;
+    font-size: var(--font-size-11xl);
+    color: #800000;
+    font-family: var(--font-inter);
+}
+
+.about-us,
+.locations {
+    position: absolute;
+    top: 104px;
+    left: 282px;
+    font-weight: 300;
+}
+
+.about-us {
+    left: 863px;
+}
+
+.landing-high-child {
+    position: absolute;
+    top: 1612px;
+    left: 0;
+    background-color: var(--color-sienna);
+    width: 1254px;
+    height: 122px;
+}
+
+.caffeinated-2-1,
+.icon {
+    position: absolute;
+    top: 0;
+    left: 508px;
+    width: 206px;
+    height: 206px;
+    object-fit: cover;
+}
+
+.icon {
+    top: 550px;
+    left: 0;
+    width: 371.78px;
+    height: 366.67px;
+}
+
+.landing-high {
+    position: relative;
+    background-color: var(--color-oldlace);
+    width: 100%;
+    height: 1734px;
+    overflow: hidden;
+    text-align: center;
+    font-size: var(--font-size-xl);
+    color: var(--color-sienna);
+    font-family: var(--font-jost);
+}
